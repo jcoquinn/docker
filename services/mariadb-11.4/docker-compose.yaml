@@ -1,0 +1,25 @@
+---
+name: mariadb-11_4
+
+services:
+  db:
+    image: mariadb:11.4-noble
+    volumes:
+      - db-vol:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    networks:
+      network:
+        ipv4_address: 172.0.0.2
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.0.0.0/16
+          gateway: 172.0.0.1
+
+volumes:
+  db-vol:
+    name: mariadb-11_4
